@@ -5,7 +5,7 @@ namespace CleanArchitecture.Domain.Alquileres;
 
 public class PrecioService
 {
-  public PrecioDetalle CalcularPrecio(Vehiculo vehiculo, DateRange periodo)
+  public static PrecioDetalle CalcularPrecio(Vehiculo vehiculo, DateRange periodo)
   {
     var tipoMoneda = vehiculo.Precio!.TipoMoneda;
 
