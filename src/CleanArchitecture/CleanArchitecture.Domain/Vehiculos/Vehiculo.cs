@@ -1,4 +1,5 @@
 using CleanArchitecture.Domain.Abstactions;
+using CleanArchitecture.Domain.Shared;
 
 namespace CleanArchitecture.Domain.Vehiculos;
 
