@@ -1,5 +1,6 @@
 using CleanArchitecture.Domain.Abstactions;
 using CleanArchitecture.Domain.Alquileres.Events;
+using CleanArchitecture.Domain.Shared;
 using CleanArchitecture.Domain.Vehiculos;
 
 namespace CleanArchitecture.Domain.Alquileres;
@@ -29,20 +30,26 @@ public sealed class Alquiler : Entity
   public DateTime? FechaCreacion { get; private set; }
   public DateTime? FechaConfirmacion { get; private set; }
   public DateTime? FechaCancelacion { get; private set; }
+  public DateTime? FechaRechazado { get; private set; }
+  public DateTime? FechaCompletado { get; private set; }
   public DateRange? DuracionAlquiler { get; private set; }
   public AlquilerStatus Status { get; private set; }
 
   public static Alquiler Reservar(
-    Guid vehiculoId,
+    Vehiculo vehiculo,
     Guid userId,
     DateRange duracionAlquiler,
-    DateTime fechaCreacion,
-    PrecioDetalle precioDetalle
+    DateTime fechaCreacion
   )
   {
+    var precioDetalle = PrecioService.CalcularPrecio(
+      vehiculo,
+      duracionAlquiler
+    );
+
     var alquiler = new Alquiler(
       Guid.NewGuid(),
-      vehiculoId,
+      vehiculo.Id,
       userId,
       precioDetalle.PrecioPorPeriodo,
       precioDetalle.Mantenimiento,
@@ -55,6 +62,71 @@ public sealed class Alquiler : Entity
 
     alquiler.RaiseDomainEvent(new AlquilerReservadoDomainEvent(alquiler.Id!));
 
+    vehiculo.FechaUltimaAlquiler = fechaCreacion;
+
     return alquiler;
+  }
+
+  public Result Confirmar(DateTime utcNow)
+  {
+    if (Status is not AlquilerStatus.Reservado)
+    {
+      return Result.Failure(AlquilerErrors.NotReserved);
+    }
+
+    Status = AlquilerStatus.Confirmado;
+    FechaConfirmacion = utcNow;
+
+    RaiseDomainEvent(new AlquilerConfirmadoDomainEvent(Id));
+    return Result.Success();
+  }
+
+  public Result Rechazar(DateTime utcNow)
+  {
+    if (Status is not AlquilerStatus.Reservado)
+    {
+      return Result.Failure(AlquilerErrors.NotReserved);
+    }
+
+    Status = AlquilerStatus.Rechazado;
+    FechaRechazado = utcNow;
+
+    RaiseDomainEvent(new AlquilerRechazadoDomainEvent(Id));
+    return Result.Success();
+  }
+
+  public Result Cancelar(DateTime utcNow)
+  {
+    if (Status is not AlquilerStatus.Confirmado)
+    {
+      return Result.Failure(AlquilerErrors.NotConfirmed);
+    }
+
+    var currentDate = DateOnly.FromDateTime(utcNow);
+
+    if (DuracionAlquiler!.Start <= currentDate)
+    {
+      return Result.Failure(AlquilerErrors.AlreadyStarted);
+    }
+
+    Status = AlquilerStatus.Cancelado;
+    FechaCancelacion = utcNow;
+
+    RaiseDomainEvent(new AlquilerCanceladoDomainEvent(Id));
+    return Result.Success();
+  }
+
+  public Result Completar(DateTime utcNow)
+  {
+    if (Status is not AlquilerStatus.Confirmado)
+    {
+      return Result.Failure(AlquilerErrors.NotConfirmed);
+    }
+
+    Status = AlquilerStatus.Completado;
+    FechaCompletado = utcNow;
+
+    RaiseDomainEvent(new AlquilerCompletadoDomainEvent(Id));
+    return Result.Success();
   }
 }

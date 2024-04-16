@@ -39,26 +39,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\todoy\\.nuget\\packages\\": {}
+    "/Users/n1ki/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CleanArchitecture\\src\\CleanArchitecture\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
+      "projectUniqueName": "/Users/n1ki/Desktop/clean-architecture/src/CleanArchitecture/CleanArchitecture.Domain/CleanArchitecture.Domain.csproj",
       "projectName": "CleanArchitecture.Domain",
-      "projectPath": "C:\\CleanArchitecture\\src\\CleanArchitecture\\CleanArchitecture.Domain\\CleanArchitecture.Domain.csproj",
-      "packagesPath": "C:\\Users\\todoy\\.nuget\\packages\\",
-      "outputPath": "C:\\CleanArchitecture\\src\\CleanArchitecture\\CleanArchitecture.Domain\\obj\\",
+      "projectPath": "/Users/n1ki/Desktop/clean-architecture/src/CleanArchitecture/CleanArchitecture.Domain/CleanArchitecture.Domain.csproj",
+      "packagesPath": "/Users/n1ki/.nuget/packages/",
+      "outputPath": "/Users/n1ki/Desktop/clean-architecture/src/CleanArchitecture/CleanArchitecture.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\todoy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/n1ki/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -103,7 +101,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

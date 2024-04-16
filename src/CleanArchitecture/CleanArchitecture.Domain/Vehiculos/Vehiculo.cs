@@ -1,4 +1,5 @@
 using CleanArchitecture.Domain.Abstactions;
+using CleanArchitecture.Domain.Shared;
 
 namespace CleanArchitecture.Domain.Vehiculos;
 
@@ -18,6 +19,6 @@ public sealed class Vehiculo(
     public Direccion? Direccion { get; private set; } = direccion;
     public Moneda? Precio { get; private set; } = precio;
     public Moneda? Mantenimiento { get; private set; } = mantenimiento;
-    public DateTime? FechaUltimaAlquiler { get; private set; } = fechaUltimaAlquiler;
+    public DateTime? FechaUltimaAlquiler { get; internal set; } = fechaUltimaAlquiler;
     public List<Accesorio> Accesorios { get; private set; } = accesorios;
 }
