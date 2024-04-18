@@ -2,3 +2,6 @@ src/CleanArchitecture/CleanArchitecture.Domain/obj/Debug/net8.0/CleanArchitectur
 src/CleanArchitecture/CleanArchitecture.Domain/obj/Debug/net8.0/CleanArchitecture.Domain.AssemblyInfoInputs.cache
 src/CleanArchitecture/CleanArchitecture.Domain/bin
 src/CleanArchitecture/CleanArchitecture.Domain/obj
+/.vs
+/src/CleanArchitecture/CleanArchitecture.Application/bin/Debug/net8.0
+/src/CleanArchitecture/CleanArchitecture.Application/obj
