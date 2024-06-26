@@ -5,3 +5,5 @@ src/CleanArchitecture/CleanArchitecture.Domain/obj
 /.vs
 /src/CleanArchitecture/CleanArchitecture.Application/bin/Debug/net8.0
 /src/CleanArchitecture/CleanArchitecture.Application/obj
+
+.fake

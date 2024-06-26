@@ -39,10 +39,11 @@ public sealed class Alquiler : Entity
     Vehiculo vehiculo,
     Guid userId,
     DateRange duracionAlquiler,
-    DateTime fechaCreacion
+    DateTime fechaCreacion,
+    PrecioService precioService
   )
   {
-    var precioDetalle = PrecioService.CalcularPrecio(
+    var precioDetalle = precioService.CalcularPrecio(
       vehiculo,
       duracionAlquiler
     );
