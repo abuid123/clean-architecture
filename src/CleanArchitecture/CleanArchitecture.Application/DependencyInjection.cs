@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Abstractions.Behaviors;
 using CleanArchitecture.Domain.Alquileres;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Application;
@@ -14,7 +15,10 @@ public static class DependencyInjection
 
             //con la coma en LogginBehaviors<,> le indico que tiene dos parametros genericos a inyectarse
             configuration.AddOpenBehavior(typeof(LoggingBehaviors<,>));
+            configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
+
+        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
 
         services.AddTransient<PrecioService>();
 

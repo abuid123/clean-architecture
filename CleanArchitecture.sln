@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CleanArchitecture", "CleanA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Domain", "src\CleanArchitecture\CleanArchitecture.Domain\CleanArchitecture.Domain.csproj", "{44B45F18-526D-415B-926A-16376306DC30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Application", "src\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Application.csproj", "{4CB5904A-6A2D-4DC3-AB78-CAF75779FDA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Application", "src\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Application.csproj", "{4CB5904A-6A2D-4DC3-AB78-CAF75779FDA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
