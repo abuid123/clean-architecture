@@ -1,6 +1,3 @@
-using FluentAssertions;
-using NetArchTest.Rules;
-
 namespace Architecture.Tests
 {
     public class ArchitectureTests
@@ -17,8 +14,7 @@ namespace Architecture.Tests
             var otherProjects = new[]
             {
                 ApplicattionNamespace,
-                //typeof(CleanArchitecture.Infrastructure.AssemblyReference).Assembly,
-                //typeof(CleanArchitecture.Persistence.AssemblyReference).Assembly,
+                //aca irian los otros namespaces
             };
 
             //Act

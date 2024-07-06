@@ -1,2 +1,2 @@
-﻿global using CleanArchitecture.Application;
-global using CleanArchitecture.Domain;
+﻿global using FluentAssertions;
+global using NetArchTest.Rules;
