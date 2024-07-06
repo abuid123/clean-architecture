@@ -7,3 +7,5 @@ src/CleanArchitecture/CleanArchitecture.Domain/obj
 /src/CleanArchitecture/CleanArchitecture.Application/obj
 
 .fake
+/CleanArchitecture.Infraestructure/obj
+/Infraestructure/obj
