@@ -2,8 +2,8 @@ namespace Architecture.Tests
 {
     public class ArchitectureTests
     {
-        private const string DomainNamespace = "Domain";
-        private const string ApplicattionNamespace = "Application";
+        private const string DomainNamespace = "CleanArchitecture.Domain";
+        private const string ApplicattionNamespace = "CleanArchitecture.Application";
 
         [Fact]
         public void Domain_Should_Not_HaveAnyDependecyOnOtherProjects()
