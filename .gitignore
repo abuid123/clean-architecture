@@ -12,3 +12,4 @@ src/CleanArchitecture/CleanArchitecture.Domain/obj
 /Architecture.Tests/bin/Debug/net8.0
 /Architecture.Tests/obj/Debug/net8.0
 /Architecture.Tests/obj
+/CleanArchitecture.Infraestructure/bin/Debug/net8.0
