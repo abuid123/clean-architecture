@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Application.Abstractions.Clock;
+namespace CleanArchitecture.Application.Abstractions.Clock;
 
 public interface IDateTimeProvider
 {
-    DateTime CurrentTime { get; }
+    DateTime currentTime {get;}
 }

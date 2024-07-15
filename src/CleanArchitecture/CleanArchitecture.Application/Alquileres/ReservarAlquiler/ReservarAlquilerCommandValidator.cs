@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+using System.Security.Cryptography.X509Certificates;
+using FluentValidation;
 
 namespace CleanArchitecture.Application.Alquileres.ReservarAlquiler;
 
@@ -6,8 +7,8 @@ public class ReservarAlquilerCommandValidator : AbstractValidator<ReservarAlquil
 {
     public ReservarAlquilerCommandValidator()
     {
-        RuleFor(x => x.UserId).NotEmpty();
-        RuleFor(x => x.VehiculoId).NotEmpty();
-        RuleFor(x => x.FechaInicio).LessThan(x => x.FechaFin);
+        RuleFor(c => c.UserId).NotEmpty();
+        RuleFor(c => c.VehiculoId).NotEmpty();
+        RuleFor(c => c.FechaInicio).LessThan(c => c.FechaFin);
     }
 }

@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Application.Abstractions.Clock;
+using CleanArchitecture.Application.Abstractions.Clock;
 using CleanArchitecture.Application.Abstractions.Messaging;
-using CleanArchitecture.Domain.Abstactions;
+using CleanArchitecture.Domain.Abstractions;
 using CleanArchitecture.Domain.Alquileres;
 using CleanArchitecture.Domain.Users;
 using CleanArchitecture.Domain.Vehiculos;
@@ -18,12 +18,13 @@ internal sealed class ReservarAlquilerCommandHandler :
     private readonly IDateTimeProvider _dateTimeProvider;
 
     public ReservarAlquilerCommandHandler(
-        IUserRepository userRepository,
-        IVehiculoRepository vehiculoRepository,
-        IAlquilerRepository alquilerRepository,
-        PrecioService precioService,
+        IUserRepository userRepository, 
+        IVehiculoRepository vehiculoRepository, 
+        IAlquilerRepository alquilerRepository, 
+        PrecioService precioService, 
         IUnitOfWork unitOfWork,
-        IDateTimeProvider dateTimeProvider)
+        IDateTimeProvider dateTimeProvider
+        )
     {
         _userRepository = userRepository;
         _vehiculoRepository = vehiculoRepository;
@@ -33,26 +34,28 @@ internal sealed class ReservarAlquilerCommandHandler :
         _dateTimeProvider = dateTimeProvider;
     }
 
-    public async Task<Result<Guid>> Handle(ReservarAlquilerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(
+        ReservarAlquilerCommand request, 
+        CancellationToken cancellationToken
+        )
     {
-        var user = await _userRepository.GetByIdAsync(request.UserId,cancellationToken);
+       
+        var user = await _userRepository.GetByIdAsync(request.UserId, cancellationToken);
 
-        if (user is null) 
+        if(user is null)
         {
-            return Result.Failure<Guid>(UserErrors.NotFound);    
+            return Result.Failure<Guid>(UserErrors.NotFound);
         }
 
         var vehiculo = await _vehiculoRepository.GetByIdAsync(request.VehiculoId, cancellationToken);
-
-        if (vehiculo is null)
+        if(vehiculo is null)
         {
             return Result.Failure<Guid>(VehiculoErrors.NotFound);
         }
 
-        //Representa la duracion en dias
         var duracion = DateRange.Create(request.FechaInicio, request.FechaFin);
 
-        if (await _alquilerRepository.IsOverlappingAsync(vehiculo, duracion, cancellationToken))
+        if(await _alquilerRepository.IsOverlappingAsync(vehiculo, duracion, cancellationToken))
         {
             return Result.Failure<Guid>(AlquilerErrors.Overlap);
         }
@@ -61,7 +64,7 @@ internal sealed class ReservarAlquilerCommandHandler :
             vehiculo,
             user.Id,
             duracion,
-            _dateTimeProvider.CurrentTime,
+            _dateTimeProvider.currentTime,
             _precioService
         );
 
@@ -70,5 +73,6 @@ internal sealed class ReservarAlquilerCommandHandler :
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return alquiler.Id;
+
     }
 }

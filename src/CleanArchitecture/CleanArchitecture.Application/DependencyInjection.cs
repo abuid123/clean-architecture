@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Abstractions.Behaviors;
+using CleanArchitecture.Application.Abstractions.Behaviors;
 using CleanArchitecture.Domain.Alquileres;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,13 +9,12 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddMediatR(configuration =>
+        services.AddMediatR(configuration => 
         {
-            configuration.RegisterServicesFromAssemblies(typeof(DependencyInjection).Assembly);
-
-            //con la coma en LogginBehaviors<,> le indico que tiene dos parametros genericos a inyectarse
-            configuration.AddOpenBehavior(typeof(LoggingBehaviors<,>));
+            configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+            configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
             configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
+
         });
 
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
