@@ -8,6 +8,7 @@ src/CleanArchitecture/CleanArchitecture.Domain/obj
 
 .fake
 /CleanArchitecture.Infraestructure/obj
+/CleanArchitecture.Infraestructure/bin
 /Infraestructure/obj
 /Architecture.Tests/bin/Debug/net8.0
 /Architecture.Tests/obj/Debug/net8.0
